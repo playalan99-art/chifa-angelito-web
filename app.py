@@ -34,7 +34,19 @@ PRODUCTS = [
             {"name": "Grande", "price": 6.00},
         ],
     },
-]
+],
+},
+    {
+        "id": "lomo-apanado",
+        "name": "Lomo Apanado ",
+        "description": "Una combinación especial preparada al momento para disfrutar en familia.",
+        "image": "🥢",
+        "variants": [
+            {"name": "Completo", "price": 7.00},
+        ],
+    },
+],
+
 
 @app.route("/")
 def index():
