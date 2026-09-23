@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chifa Angelito | Sabor preparado al momento</title>
+    <meta name="description" content="Chifa Angelito - Menú y pedidos por WhatsApp.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="nav-wrap">
+            <a class="brand" href="#inicio">
+                <span class="brand-mark">中</span>
+                <span>
+                    <strong>CHIFA ANGELITO</strong>
+                    <small>Sabor preparado al momento</small>
+                </span>
+            </a>
+            <nav>
+                <a href="#inicio">Inicio</a>
+                <a href="#menu">Menú</a>
+                <a href="#nosotros">Nosotros</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+            <button class="cart-button" onclick="openCart()" aria-label="Abrir carrito">
+                🛒 <span>Carrito</span> <b id="cart-count">0</b>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section id="inicio" class="hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <div class="gold-line"></div>
+                <p class="eyebrow">🍜 CHIFA ANGELITO</p>
+                <h1>La mejor sazón,<br><span>preparada al momento.</span></h1>
+                <p>Disfruta nuestros platos recién preparados y realiza tu pedido directamente por WhatsApp.</p>
+                <a href="#menu" class="btn btn-gold">Ver menú</a>
+            </div>
+        </section>
+
+        <section id="menu" class="section">
+            <div class="section-title">
+                <p class="eyebrow">NUESTRO MENÚ</p>
+                <h2>Elige tu favorito</h2>
+                <div class="ornament">◆</div>
+                <p>Selecciona el tamaño, agrega al carrito y envíanos tu pedido por WhatsApp.</p>
+            </div>
+
+            <div class="products-grid">
+                {% for product in products %}
+                <article class="product-card">
+                    <div class="product-image">{{ product.image }}</div>
+                    <div class="product-info">
+                        <span class="product-tag">PREPARADO AL MOMENTO</span>
+                        <h3>{{ product.name }}</h3>
+                        <p>{{ product.description }}</p>
+
+                        <label for="variant-{{ product.id }}">Tamaño</label>
+                        <select id="variant-{{ product.id }}" class="variant-select">
+                            {% for variant in product.variants %}
+                            <option value="{{ variant.name }}" data-price="{{ '%.2f'|format(variant.price) }}">
+                                {{ variant.name }} — ${{ '%.2f'|format(variant.price) }}
+                            </option>
+                            {% endfor %}
+                        </select>
+
+                        <button
+                            class="btn btn-red add-btn"
+                            onclick="addToCart('{{ product.id }}', '{{ product.name }}', document.getElementById('variant-{{ product.id }}'))">
+                            Agregar al carrito
+                        </button>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section id="nosotros" class="about">
+            <div class="about-box">
+                <div class="about-symbol">中</div>
+                <div>
+                    <p class="eyebrow">SOBRE NOSOTROS</p>
+                    <h2>Una nueva propuesta con mucha sazón</h2>
+                    <p>
+                        En Chifa Angelito trabajamos con dedicación para ofrecer platos preparados
+                        al momento, cuidando cada pedido y buscando siempre entregar el mejor sabor.
+                    </p>
+                    <p class="gold-text">Calidad • Sabor • Atención</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" class="contact section">
+            <div class="section-title">
+                <p class="eyebrow">CONTACTO</p>
+                <h2>Haz tu pedido</h2>
+                <p>Arma tu pedido y envíanoslo directamente por WhatsApp.</p>
+                <a class="btn btn-gold" href="https://wa.me/593985611881" target="_blank" rel="noopener">
+                    💬 Escribir por WhatsApp
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <div>
+                <strong>CHIFA ANGELITO</strong>
+                <p>Preparado al momento con nuestra mejor sazón.</p>
+            </div>
+            <div>© 2026 Chifa Angelito</div>
+        </div>
+    </footer>
+
+    <!-- CART DRAWER -->
+    <div id="cart-overlay" class="cart-overlay" onclick="closeCart()"></div>
+    <aside id="cart" class="cart">
+        <div class="cart-header">
+            <div>
+                <p class="eyebrow">TU PEDIDO</p>
+                <h2>Mi carrito</h2>
+            </div>
+            <button class="close-cart" onclick="closeCart()">×</button>
+        </div>
+
+        <div id="cart-items" class="cart-items"></div>
+
+        <div id="empty-cart" class="empty-cart">
+            <div>🛒</div>
+            <h3>Tu carrito está vacío</h3>
+            <p>Agrega tus platos favoritos para comenzar.</p>
+        </div>
+
+        <div class="cart-footer">
+            <div class="total-row">
+                <span>Total</span>
+                <strong id="cart-total">$0.00</strong>
+            </div>
+            <button class="btn btn-whatsapp" onclick="sendWhatsApp()">
+                💬 Pedir por WhatsApp
+            </button>
+            <button class="continue-btn" onclick="closeCart()">Seguir comprando</button>
+            <small>El pedido se enviará a Chifa Angelito para coordinar la entrega o retiro.</small>
+        </div>
+    </aside>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
