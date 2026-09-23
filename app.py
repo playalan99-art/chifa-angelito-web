@@ -20,7 +20,7 @@ PRODUCTS = [
         "description": "Tallarín salteado al momento, con nuestra sazón especial.",
         "image": "🍜",
         "variants": [
-            {"name": "Mediano", "price": 4.50},
+            {"name": "Medio", "price": 4.50},
             {"name": "Grande", "price": 6.00},
         ],
     },
@@ -30,7 +30,7 @@ PRODUCTS = [
         "description": "Una combinación especial preparada al momento para disfrutar en familia.",
         "image": "🥢",
         "variants": [
-            {"name": "Mediano", "price": 4.50},
+            {"name": "Medio", "price": 4.50},
             {"name": "Grande", "price": 6.00},
         ],
     },
