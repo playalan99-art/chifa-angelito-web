@@ -9,7 +9,7 @@ PRODUCTS = [
         "description": "Arroz chaufa preparado al momento con la sazón de Chifa Angelito.",
         "image": "🍚",
         "variants": [
-            {"name": "Pequeño", "price": 2.00},
+            {"name": "Mini", "price": 2.00},
             {"name": "Mediano", "price": 3.00},
             {"name": "Grande", "price": 4.00},
         ],
@@ -20,7 +20,7 @@ PRODUCTS = [
         "description": "Tallarín salteado al momento, con nuestra sazón especial.",
         "image": "🍜",
         "variants": [
-            {"name": "Pequeño", "price": 4.50},
+            {"name": "Mediano", "price": 4.50},
             {"name": "Grande", "price": 6.00},
         ],
     },
@@ -30,7 +30,7 @@ PRODUCTS = [
         "description": "Una combinación especial preparada al momento para disfrutar en familia.",
         "image": "🥢",
         "variants": [
-            {"name": "Pequeño", "price": 4.50},
+            {"name": "Mediano", "price": 4.50},
             {"name": "Grande", "price": 6.00},
         ],
     },
